@@ -79,6 +79,7 @@ impl<'a> SQSHelper<'a> {
 	/// Receive a message from specified queue
 	pub fn receive_message(&mut self, queue_url: &str) -> Result<ReceiveMessageResult, AWSError> {
 		let mut req = ReceiveMessageRequest::default();
+                req.max_number_of_messages = 10;
 		req.queue_url = queue_url.to_string();
 		self.receive_message_with_request(&req)
 	}
